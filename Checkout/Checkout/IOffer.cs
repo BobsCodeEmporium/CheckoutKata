@@ -10,5 +10,6 @@ namespace Checkout
     {
         int Multiplier { get; set; }
         int Price { get; set; }
+        string Sku { get; set; }
     }
 }

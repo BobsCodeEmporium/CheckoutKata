@@ -10,6 +10,5 @@ namespace Checkout
     {
         public string Sku { get; set; }
         public int Price { get; set; }
-        public IOffer Offer { get; set; }
     }
 }

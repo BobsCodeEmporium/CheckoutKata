@@ -30,12 +30,20 @@ namespace Checkout
 
         public int GetTotalPrice()
         {
-            //TODO Take offers into account
-
             var total = 0;
             foreach (var product in Basket.Items)
             {
                 total += product.Price;
+            }
+
+            foreach (var offer in Basket.Offers)
+            {
+                if (Basket.Items.Count(x => x.Sku == offer.Sku) >= offer.Multiplier)
+                {
+                    var qualifyingItems = Basket.Items.Count(x => x.Sku == offer.Sku) / offer.Multiplier;
+                    total = total - (Products.First(x => x.Sku == offer.Sku).Price * offer.Multiplier);
+                    total += offer.Price * qualifyingItems;
+                }
             }
 
             return total;
