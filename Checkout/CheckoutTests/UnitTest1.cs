@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Xunit;
 
 namespace CheckoutTests
@@ -9,20 +10,20 @@ namespace CheckoutTests
         public void When_AnItemIsScannedItIsAddedToTheBasket()
         {
             //--ARRANGE--
-            var checkout = new Checkout();
+            var checkout = new Checkout.Checkout();
 
             //--ACT--
             checkout.Scan("A");
 
             //--ASSERT--
-            Assert.True(checkout.Basket.Items > 0);
+            Assert.True(checkout.Basket.Items.Any());
         }
 
         [Fact]
         public void When_TheTotalIsRequestedItReturnsTheTotalAmount()
         {
             //--ARRANGE--
-            var checkout = new Checkout();
+            var checkout = new Checkout.Checkout();
             checkout.Scan("A");
             checkout.Scan("B");
 
