@@ -8,6 +8,11 @@ namespace Checkout
 {
     public class Basket
     {
-        public List<string> Items { get; set; }
+        public Basket()
+        {
+            Items = new List<Product>();
+        }
+
+        public List<Product> Items { get; set; }
     }
 }
