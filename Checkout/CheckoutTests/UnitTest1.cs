@@ -6,9 +6,31 @@ namespace CheckoutTests
     public class UnitTest1
     {
         [Fact]
-        public void Test1()
+        public void When_AnItemIsScannedItIsAddedToTheBasket()
         {
+            //--ARRANGE--
+            var checkout = new Checkout();
 
+            //--ACT--
+            checkout.Scan("A");
+
+            //--ASSERT--
+            Assert.True(checkout.Basket.Items > 0);
+        }
+
+        [Fact]
+        public void When_TheTotalIsRequestedItReturnsTheTotalAmount()
+        {
+            //--ARRANGE--
+            var checkout = new Checkout();
+            checkout.Scan("A");
+            checkout.Scan("B");
+
+            //--ACT--
+            var total = checkout.GetTotalPrice();
+
+            //--ASSERT--
+            Assert.True(total > 0);
         }
     }
 }
